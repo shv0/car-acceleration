@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#151515">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This calculator allows you to simulate the acceleration of a car using its basic parameters">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet"> 
+    <!--<link rel="icon" href="/favicon.svg" type="image/svg+xml">-->
+    <title>Vehicle Acceleration Calculator / 98h.org</title>
+</head>
+<body>
+    <header class="mb-4">
+        <nav class="navbar navbar-expand-lg navbar-dark top-navbar">
+          <div class="container">
+            <a href="/" class="navbar-brand fw-bold"><span class="icon-cab"></span>vehicle acceleration <span>calculator</span></a>
+            <!--
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fw-bold" href="#">Blog</a>
+                </li>      
+              </ul>
+              <button class="btn btn-sm btn-outline-secondary main-page-button fw-bold" type="button">Contact me</button>
+            </div>
+          -->
+          </div>
+        </nav>
+      </header>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="about-project p-3 mb-3">
+              <h3 class="fw-bold d-inline">Vehicle acceleration modeling calculator</h3>
+              <span class="ms-2">v. 1.0.1</span>
+              <p class="fs-5 mt-2">This calculator allows you to simulate the acceleration of a car using its basic parameters.<br>To get started, enter the parameters of the car in the form below, or try out the calculator with standard parameter values. Then click <span class="fw-bold">Simulate</span>.<br>You can evaluate the traction-speed properties of the car from the charts or the values in the table.</p>
+              <a class="btn btn-sm btn-outline-light fw-bold" target="_blank" href="https://github.com/shv0/car-acceleration">View on Github <span class="icon-github-circled"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5">
+              <div class="vehicle-data p-3 mb-3">
+                <h4 class="mb-3 fw-bold">Environmental parameters and mass-geometric characteristics  <br>of the vehicle</h4>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="data-inputs">
+                      <label for="basic-url" class="form-label">Vehicle mass (kg)</label>
+                      <div class="input-group mb-3">
+                        <input type="number" class="form-control text-center" name="mass" value="1995" placeholder="Vehicle mass, kg" required>
+                        <span class="input-group-text"><a class="help-button icon-help-circled" href="#"></a></span>
+                      </div>
+                      <label for="basic-url" class="form-label">Wheel static radius (m)</label>
+                      <div class="input-group mb-3">
+                        <input type="number" class="form-control text-center" name="rk" value="0.33" placeholder="Wheel static radius, m" required>
+                        <span class="input-group-text"><a class="help-button icon-help-circled" href="#"></a></span>
+                      </div>
+                      <label for="basic-url" class="form-label">Rolling resistance coefficien</label>
+                      <div class="input-group mb-3">
+                        <input type="number" class="form-control text-center" name="rlc" value="0.011" placeholder="Rolling resistance coefficien" required>
+                        <span class="input-group-text"><a class="help-button icon-help-circled" href="#"></a></span>
+                      </div>
+                      <label for="basic-url" class="form-label">Wheel friction coefficient</label>
+                      <div class="input-group mb-3">
+                        <input type="number" class="form-control text-center" name="wfc" value="1.1" placeholder="Wheel friction coefficient" required>
+                        <span class="input-group-text"><a class="help-button icon-help-circled" href="#"></a></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="data-inputs">
+                      <label for="basic-url" class="form-label">Drag coefficient</label>
+                      <div class="input-group mb-3">
+                        <input type="number" class="form-control text-center" name="cd" value="0.3" placeholder="Drag coefficient" required>
+                        <span class="input-group-text"><a class="help-button icon-help-circled" href="#"></a></span>
+                      </div>
+                      <label for="basic-url" class="form-label">Vehicle frontal area (m<sup>2</sup>)</label>
+                      <div class="input-group mb-3">
+                        <input type="number" class="form-control text-center" name="al" value="2.84" placeholder="Vehicle frontal area, m" required>
+                        <span class="input-group-text"><a class="help-button icon-help-circled" href="#"></a></span>
+                      </div>
+                      <label for="basic-url" class="form-label">Rear axle load coefficient</label>
+                      <div class="input-group mb-3">
+                        <input type="number" class="form-control text-center" name="ralc" value="0.65" placeholder="Rear axle load coefficient" required>
+                        <span class="input-group-text"><a class="help-button icon-help-circled" href="#"></a></span>
+                      </div>
+                    </div>                
+                  </div>
+                  <h4 class="mt-3 mb-3 fw-bold">Transmission parameters</h4>
+                  <div class="col-lg-6">
+                    <div class="data-inputs">
+                      <label for="basic-url" class="form-label">Final drive ratio</label>
+                      <div class="input-group mb-3">
+                        <input type="number" class="form-control text-center" name="fd" value="3.39" placeholder="Final drive ratio" required>
+                        <span class="input-group-text"><a class="help-button icon-help-circled" href="#"></a></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="data-inputs">
+                      <label for="basic-url" class="form-label">Transmission efficiency</label>
+                      <div class="input-group mb-3">
+                        <input type="number" class="form-control text-center" name="kpd" value="0.9" placeholder="Transmission efficiency" required>
+                        <span class="input-group-text"><a class="help-button icon-help-circled" href="#"></a></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="data-inputs">
+                      <label for="basic-url" class="form-label">Gear ratios</label>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control text-center" name="gears" value="4.48,2.87,1.84,1.41,1,0.74" placeholder="Gear ratios" required>
+                        <span class="input-group-text"><a class="help-button icon-help-circled" href="#"></a></span>
+                      </div>
+                    </div>
+                  </div>
+                  <h4 class="mt-3 mb-3 fw-bold">Engine parameters</h4>
+                  <div class="col-lg-12">
+                    <div class="data-inputs">
+                      <label for="basic-url" class="form-label">Engine speed points (rpm)</label>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control text-center" name="rpm" value="1000,2020,2990,3500,5000,6500" placeholder="Engine speed points" required>
+                        <span class="input-group-text"><a class="help-button icon-help-circled" href="#"></a></span>
+                      </div>
+                    </div>
+                    <div class="data-inputs">
+                      <label for="basic-url" class="form-label">Engine torque points (N·m)</label>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control text-center" name="tq" value="306,385,439,450,450,367" placeholder="Engine torque points" required>
+                        <span class="input-group-text"><a class="help-button icon-help-circled" href="#"></a></span>
+                      </div>
+                    </div>
+                  </div>
+                  <h4 class="mt-3 mb-3 fw-bold">Simulation parameters</h4>
+                  <div class="col-lg-6">
+                    <div class="data-inputs">
+                      <label for="basic-url" class="form-label">Simulation time (s)</label>
+                      <div class="input-group mb-3">
+                        <input type="number" class="form-control text-center" name="time" value="60" placeholder="Simulation time" max="99" maxlength="2" required>
+                        <span class="input-group-text"><a class="help-button icon-help-circled" href="#"></a></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="simulate-buttons d-flex justify-content-center mt-3 mb-3">
+                  <button class="btn btn-dark fw-bold m-2 sim-button" type="button">Simulate</button>
+                  <button class="btn btn-outline-secondary fw-bold m-2 res-button" type="button">Reset to default</button>
+                </div>
+                <p class="text-muted">The parameters of the <span class="fw-bold">Lincoln Continental</span> are used as default values.</p>
+              </div>
+          </div>
+          <div class="col-lg-7">
+            <h4 class="mb-3 fw-bold">Results in graphical format <span class="icon-chart-line"></span></h4>
+            <div class="graphical-results p-3 mb-3">
+                <div id="graphs" class="d-flex justify-content-center">
+                  <p class="notice-text fw-bold opacity-75">Run the simulation to see the results</p>
+                </div>
+            </div>   
+            <div class="sim-results mb-3">
+              <div class="select-graph mt-3">
+                <select class="form-select mb-3" name="chartType" required>
+                  <option value="0" selected>Characteristic curves of torque and performance for ICE</option>
+                  <option value="1">Engine Speed (rpm)</option>
+                  <option value="2">Engine Torque (N·m)</option>
+                  <option value="3">Engine Power (kW)</option>
+                  <option value="4">Wheel Torque [N·m]</option>
+                  <option value="5">Vehicle acceleration (m/s^2)</option>
+                  <option value="6">Vehicle Speed (km/h)</option>
+                  <option value="7">Gear</option>
+                  <option value="8">Diagram of the vehicle dynamic coefficient (for each gear)</option>
+                </select>
+              </div>
+              <h4 class="mb-3 fw-bold">Results in tabular format <span class="icon-table"></span></h4>
+              <div class="table-results">
+                <table class="table table-responsive table-striped">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Parameter</th>
+                      <th scope="row">Value</th>
+                    </tr>
+                    <tr>
+                      <th scope="row">Maximum speed</th>
+                      <td><span class="p-value">--/-</span> <span class="unit">km/hr</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Maximum Wheel Torque</th>
+                      <td><span class="p-value">--/-</span> <span class="unit">N·m</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Maximum acceleration</th>
+                      <td><span class="p-value">--/-</span> <span class="unit">m/s<sup>2</sup></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>           
+          </div>
+        </div>
+      </div>
+      <div class="footer mt-5">
+        <div class="container">
+          <footer class="d-flex flex-wrap justify-content-between align-items-center py-3">
+            <div class="col-lg-6 d-flex align-items-center">
+              <span class="text-muted">© 2021 98h.org, Vitali Shevchenko</span>
+            </div>
+            <ul class="nav col-lg-6 justify-content-end list-unstyled d-flex">
+              <p>Powered by <a href="https://fozzy.com/aff.php?aff=3923" target="_blank" rel="nofollow">Fozzy Hosting ⚡</a></p>
+            </ul>
+          </footer>
+        </div>
+      </div>
+</body>
+</html>
