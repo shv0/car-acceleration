@@ -7,7 +7,7 @@ var simButton = document.querySelector('.sim-button');
 var resetButton = document.querySelector('.res-button');
 var chartType = document.getElementsByName('chartType')[0];
 
-var defaultValues = ['1995', '0.33', '0.3', '2.84', '0.011', '0.65', '1.1', '4.71,2.84,1.90,1.38,1,1,0.74', '3.39', '0.9', '1000,2020,2990,3500,5000,6500', '306,385,439,450,450,367', '60'];
+var defaultValues = ['1995', '0.33', '0.3', '2.84', '0.011', '0.65', '1.1', '4.48,2.87,1.84,1.41,1,0.74', '3.39', '0.9', '1000,2020,2990,3500,5000,6500', '306,385,439,450,450,367', '60'];
 var dataVehicle = ['mass','rk','cd','al','rlc','ralc','wfc','gears','fd','kpd','rpm','tq','time'];
 var chartTitle = [
     'Characteristic curves of torque and performance (full load)',
