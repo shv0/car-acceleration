@@ -18,7 +18,7 @@ var chartTitle = [
     'Vehicle acceleration',
     'Vehicle speed',
     'Engaged gear',
-    'Dynamic coefficient of a vehicle',
+    'Dynamic factor of a vehicle',
     /*'Fuel consumption'  */ 
 ];
 var timeText = 'Time, s';
@@ -31,7 +31,7 @@ var axisTitle = [
     [timeText,'Vehicle acceleration, m/s^2'],
     [timeText,'Vehicle speed, km/h'],
     [timeText,'Engaged gear'],
-    ['Dynamic coefficient','Vehicle speed, km/h'],
+    ['Dynamic factor','Vehicle speed, km/h'],
     /*['F','V']*/
 ];
 
@@ -253,7 +253,13 @@ function acceleration() {
 
     function buildTabe() {
         var dataParams = document.querySelectorAll('.p-value');
-        var dataGet = [Math.floor(Math.max.apply(null, (vel.map(n => n * 3.6)))), Math.floor(Math.max.apply(null, tqW)), round(Math.max.apply(null, acs), 3)];
+        var dataGet = [
+            Math.floor(Math.max.apply(null, (vel.map(n => n * 3.6)))),   // Max Speed
+            Math.floor(Math.max.apply(null, tqW)),                       // Max wheel torque
+            round(Math.max.apply(null, acs), 3),                         // Max acceleration
+            round(Math.max.apply(null, d[0]), 3),                        // Max D in low gear
+            round(Math.max.apply(null, d[t.gmax - 1]), 3),               // Max D in top gear
+        ];
         for(var i = 0; i < dataGet.length; i++) {
             dataParams[i].textContent = dataGet[i];
         }
